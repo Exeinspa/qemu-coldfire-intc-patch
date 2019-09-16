@@ -14,6 +14,7 @@ To support the interrupt architecture of the **68K/ColdFire** programming model,
 | 3                     | 7-5<br>mid<br>3-0 |#8-63<br>3 (IRQ3)<br>#8-63 |
 | 2                     | 7-5<br>mid<br>3-0 |#8-63<br>2 (IRQ2)<br>#8-63 |
 | 1                     | 7-5<br>mid<br>3-0 |#8-63<br>1 (IRQ1)<br>#8-63 |
+
 The level and priority is fully programmable for all sources except interrupt sources 1–7. Interrupt source 1–7 (from the Edge port module) are fixed at the corresponding level’s midpoint priority. Thus, a maximum of 8 fully-programmable interrupt sources are mapped into a single interrupt level.
 The “fixed” interrupt source is hardwired to the given level, and represents the mid-point of the priority within the level. For the fully-programmable interrupt sources, the 3-bit level and the 3-bit priority within the level are defined in the 8-bit interrupt control register (ICRnx).
 It seems like that the Linux kernel for the M68k target won't use the level+priority mechanism, and that it just threat the interrupt as the old m68k core does. This lead some malfunctions, because QEMU assumes the software to be Linux and it copies the data within the INTC registers into the M68k core Status Register (SR).
