@@ -4,6 +4,7 @@ Emulating hardware is useful to let you make a software intended for a different
 # The Interrupt Controller is buggy in handling the priority
 There are 8 levels of interrupts, starting at 0 and ending at 7. They are organized such as Level 0 interrupts are strictly low priority stuff,  whereas Level 7 has the interrupts that Really Ought To Be Dealt With Right Now. The core M68k then ignores any interrupts equal to or below your current IPL level. The coldfire v2 core SOC use two stage priority mechanism, first all 63 interrupt source are organized into 7 levels with the level 7 holds highest priority, and within one level, can support up to 9 priorities. 
 To support the interrupt architecture of the **68K/ColdFire** programming model, the combined **63 interrupt sources** are organized as **7 levels**, with each level supporting up to **9 prioritized requests**. Consider the interrupt priority structure shown in table, which orders the interrupt levels/priorities from highest to lowest.
+
 |interrupt Level ICR[IL]|Priority ICR[IP]   |Supported Interrupt Sources|
 |-----------------------|-------------------|---------------------------|
 | 7                     | 7-5<br>mid<br>3-0 |#8-63<br>7 (IRQ7)<br>#8-63 |
