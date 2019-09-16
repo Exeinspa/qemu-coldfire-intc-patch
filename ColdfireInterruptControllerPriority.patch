@@ -1,0 +1,13 @@
+--- a/quemu/hw/m68k/mcf_intc.c	2019-04-15 12:18:16.000000000 +0200
++++ b/quemu/hw/m68k/mcf_intc.c	2019-09-13 16:53:23.546021401 +0200
+@@ -40,8 +40,8 @@
+     best = 64;
+     if (active) {
+         for (i = 0; i < 64; i++) {
+-            if ((active & 1) != 0 && s->icr[i] >= best_level) {
+-                best_level = s->icr[i];
++            if ((active & 1) != 0 && (s->icr[i] & 7) >= best_level) {
++                best_level = s->icr[i] & 7;
+                 best = i;
+             }
+             active >>= 1;
